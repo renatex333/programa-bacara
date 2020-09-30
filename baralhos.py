@@ -16,3 +16,22 @@ valores_um_baralho = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0, 0,
 
 valores_seis_baralhos = valores_um_baralho * 6
 valores_oito_baralhos = valores_um_baralho * 8
+
+#Valores das comissões dependendo da quantidade
+# de baralhos e do vencedor da rodada
+
+comissao_um_baralho = [1.29/100 , 1.01/100 , 15.75/100]
+comissao_seis_baralhos = [1.24/100 , 1.06/100 , 14.44/100]
+comissao_oito_baralhos = [1.24/100 , 1.06/100 , 14.36/100]
+
+#comissao_um_baralho[0] para quando o jogador vence
+#comissao_um_baralho[1] para quando o banco vence
+#comissao_um_baralho[2] para quando dá empate
+
+#comissao_seis_baralhos[0] para quando o jogador vence
+#comissao_seis_baralhos[1] para quando o banco vence
+#comissao_seis_baralhos[2] para quando dá empate
+
+#comissao_oito_baralhos[0] para quando o jogador vence
+#comissao_oito_baralhos[1] para quando o banco vence
+#comissao_oito_baralhos[2] para quando dá empate
