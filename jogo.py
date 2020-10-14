@@ -69,16 +69,33 @@ def apostas(jogadores, fichas_jogadores):
             fichas_jogadores[i] = fichas_jogadores[i] - numero_fichas
             i += 1
 
-    return aposta_vencedor
-    return apostas_fichas
+    conjunto_apostas = [apostas_fichas, aposta_vencedor]
+
+    return conjunto_apostas
 
 # Função para a distribuição de cartas
 def distribui_cartas():
     cartas_jogador = []
     cartas_banco = []
+    # randint para randomizar uma carta do baralho
+    indice_1_jogador = random.randint(0, len(baralho_de_jogo))
+    indice_2_jogador = random.randint(0, len(baralho_de_jogo))
+    indice_1_banco = random.randint(0, len(baralho_de_jogo))
+    indice_2_banco = random.randint(0, len(baralho_de_jogo))
+    # coloca as cartas nas respectivas listas
+    cartas_jogador.append(baralho_de_jogo[indice_1_jogador])
+    cartas_jogador.append(baralho_de_jogo[indice_2_jogador])
+    cartas_banco.append(baralho_de_jogo[indice_1_banco])
+    cartas_banco.append(baralho_de_jogo[indice_2_banco])
 
-    #randint para randomizar uma carta do baralho e retirá-la do monte
+    print("As cartas do jogador são {}".format(cartas_jogador))
+    print("As cartas do banco são {}".format(cartas_banco))
 
+    soma_jogador = valores_baralho[indice_1_jogador] + valores_baralho[indice_2_jogador]
+    soma_banco = valores_baralho[indice_1_banco] + valores_baralho[indice_2_banco]
+
+    # checa a soma das cartas e distribui uma terceira nos casos específicos
+    if soma_jogador == 8 or soma_jogador == 9:
 
 
 # Função principal
@@ -112,3 +129,5 @@ else:
 
 
 apostas_jogadores = apostas(jogadores, fichas_jogadores)
+fichas_apostadas = apostas_jogadores[:,0]
+aposta_vencedor = apostas_jogadores[:,1]
