@@ -4,6 +4,8 @@
 
 import random
 from baralhos import *
+import math
+
 
 # Função para definir a quantidade de apostadores que vão entrar no jogo
 def entrada_de_apostadores():
@@ -94,11 +96,11 @@ def jogar():
     soma_jogador = valores_baralho[indice_1_jogador] + valores_baralho[indice_2_jogador]
     soma_banco = valores_baralho[indice_1_banco] + valores_baralho[indice_2_banco]
 
-    if soma_jogador >= 10:
+    if soma_jogador == 10 or soma_jogador > 10:
         soma_jogador -= 10
     else:
         pass
-    if soma_banco >= 10:
+    if soma_banco == 10 or soma_banco > 10:
         soma_banco -= 10
     else:
         pass
@@ -114,13 +116,13 @@ def jogar():
                 resultado = "Banco Venceu"
         elif soma_banco == 6 or soma_banco == 7:
             resultado = "Jogador Venceu"
-        elif soma_banco =< 5:
+        elif soma_banco == 5 or soma_banco < 5:
             print("Dá mais uma carta para o Banco")
             novo_indice = random.randint(0, len(baralho_de_jogo))
             cartas_banco.append(baralho_de_jogo[novo_indice])
             print("As cartas do banco são {}".format(cartas_banco))
             soma_banco += valores_baralho[novo_indice]
-            if soma_banco >= 10:
+            if soma_banco == 10 or soma_banco > 10:
                 soma_banco -= 10
             else:
                 pass
@@ -136,13 +138,13 @@ def jogar():
     elif soma_banco == 8 or soma_banco == 9:
         if soma_jogador == 6 or soma_jogador == 7:
             resultado = "Banco Venceu"
-        elif soma_jogador =< 5:
+        elif soma_jogador == 5 or soma_jogador < 5:
             print("Dá mais uma carta para o Jogador")
             novo_indice = random.randint(0, len(baralho_de_jogo))
             cartas_jogador.append(baralho_de_jogo[novo_indice])
             print("As cartas do jogador são {}".format(cartas_jogador))
             soma_jogador += valores_baralho[novo_indice]
-            if soma_jogador >= 10:
+            if soma_jogador == 10 or soma_jogador > 10:
                 soma_jogador -= 10
             else:
                 pass
@@ -156,38 +158,40 @@ def jogar():
             else:
                 resultado = "Banco Venceu"
     else:
-        if soma_jogador =< 5:
+        if soma_jogador == 5 or soma_jogador < 5:
             print("Dá mais uma carta para o Jogador")
             novo_indice = random.randint(0, len(baralho_de_jogo))
             cartas_jogador.append(baralho_de_jogo[novo_indice])
             print("As cartas do jogador são {}".format(cartas_jogador))
             soma_jogador += valores_baralho[novo_indice]
-            if soma_jogador >= 10:
+            if soma_jogador == 10 or soma_jogador > 10:
                 soma_jogador -= 10
             else:
                 pass
         else:
             pass
 
-        if soma_banco =< 5:
+        if soma_banco == 5 or soma_banco < 5:
             print("Dá mais uma carta para o Banco")
             novo_indice = random.randint(0, len(baralho_de_jogo))
             cartas_banco.append(baralho_de_jogo[novo_indice])
             print("As cartas do banco são {}".format(cartas_banco))
             soma_banco += valores_baralho[novo_indice]
-            if soma_banco >= 10:
+            if soma_banco == 10 or soma_banco > 10:
                 soma_banco -= 10
             else:
                 pass
         else:
             pass
 
-        if soma_jogador == soma_banco:
-            resultado = "Empate"
-        elif soma_jogador > soma_banco:
-            resultado = "Jogador Venceu"
-        elif soma_jogador < soma_banco:
-            resultado = "Banco Venceu"
+    print("O Jogador teve uma soma de {} pontos e o Banco teve uma soma de {} pontos.".format(soma_jogador, soma_banco))
+
+    if soma_jogador == soma_banco:
+        resultado = "Empate"
+    elif soma_jogador > soma_banco:
+        resultado = "Jogador Venceu"
+    elif soma_jogador < soma_banco:
+        resultado = "Banco Venceu"
     return resultado
 
 # Variáveis globais fora de qualquer função
@@ -215,5 +219,76 @@ else:
 
 
 apostas_jogadores = apostas(jogadores, fichas_jogadores)
-fichas_apostadas = apostas_jogadores[:,0]
-aposta_vencedor = apostas_jogadores[:,1]
+fichas_apostadas = apostas_jogadores[0]
+aposta_vencedor = apostas_jogadores[1]
+
+jogando = True
+
+while jogando:
+    resultado = jogar()
+
+    if resultado == "Jogador Venceu":
+        print("O Jogador venceu!")
+        i = 0
+        for aposta in aposta_vencedor:
+            if aposta == "Jogador":
+                recebimento = fichas_apostadas[i] * 2
+            else:
+                recebimento = 0
+            if recebimento == 0:
+                pass
+            else:
+                fichas_jogadores[i] += recebimento - math.floor(recebimento * valor_comissao[0])
+            i += 1
+
+    elif resultado == "Banco Venceu":
+        print("O Banco venceu!")
+        i = 0
+        for aposta in aposta_vencedor:
+            if aposta == "Banco":
+                recebimento = math.floor(fichas_apostadas[i] * 1.95)
+            else:
+                recebimento = 0
+            if recebimento == 0:
+                pass
+            else:
+                fichas_jogadores[i] += recebimento - math.floor(recebimento * valor_comissao[1])
+            i += 1
+
+    else:
+        print("Foi Empate!")
+        i = 0
+        for aposta in aposta_vencedor:
+            if aposta == "Empate":
+                recebimento = fichas_apostadas[i] * 8
+            else:
+                recebimento = 0
+            if recebimento == 0:
+                pass
+            else:
+                fichas_jogadores[i] += recebimento - math.floor(recebimento * valor_comissao[2])
+            i += 1
+
+    i = 0
+    while i < len(fichas_jogadores):
+        if fichas_jogadores[i] == 0:
+            print("Desculpe {}, mas você ficou sem fichas. Você está fora do jogo.".format(jogadores[i]))
+            del jogadores[i]
+            del fichas_jogadores[i]
+        else:
+            print("{}, você está agora com {} fichas.".format(jogadores[i], fichas_jogadores[i]))
+            parou = int(input("Deseja parar agora? (1 - Sim e 2 - Não)"))
+            if parou == 1:
+                print("Obrigado por jogar!")
+                del jogadores[i]
+                del fichas_jogadores[i]
+            elif parou == 2:
+                print("Então vamos para mais uma rodada!")
+                i += 1
+
+
+    if not jogadores:
+        print("O jogo acabou. Não tem mais jogadores jogando.")
+        jogando = False
+    else:
+        pass
