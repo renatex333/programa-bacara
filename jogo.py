@@ -107,7 +107,7 @@ def distribui_cartas():
 # Variáveis globais fora de qualquer função
 
 jogadores = entrada_de_apostadores()
-fichas_jogadores = [200] * len(jogadores)
+fichas_jogadores = [10000] * len(jogadores)
 
 # Dependendo do número de baralhos escolhido pelo jogador,
 # o programa puxa as informações relacionadas àquele número de baralhos
