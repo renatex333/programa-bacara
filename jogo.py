@@ -73,8 +73,8 @@ def apostas(jogadores, fichas_jogadores):
 
     return conjunto_apostas
 
-# Função para a distribuição de cartas
-def distribui_cartas():
+# Função para a distribuição de cartas e checa o vencedor
+def jogar():
     cartas_jogador = []
     cartas_banco = []
     # randint para randomizar uma carta do baralho
@@ -94,15 +94,101 @@ def distribui_cartas():
     soma_jogador = valores_baralho[indice_1_jogador] + valores_baralho[indice_2_jogador]
     soma_banco = valores_baralho[indice_1_banco] + valores_baralho[indice_2_banco]
 
+    if soma_jogador >= 10:
+        soma_jogador -= 10
+    else:
+        pass
+    if soma_banco >= 10:
+        soma_banco -= 10
+    else:
+        pass
+
     # checa a soma das cartas e distribui uma terceira nos casos específicos
     if soma_jogador == 8 or soma_jogador == 9:
+        if soma_banco == 8 or soma_banco == 9:
+            if soma_jogador == soma_banco:
+                resultado = "Empate"
+            elif soma_jogador > soma_banco:
+                resultado = "Jogador Venceu"
+            elif soma_jogador < soma_banco:
+                resultado = "Banco Venceu"
+        elif soma_banco == 6 or soma_banco == 7:
+            resultado = "Jogador Venceu"
+        elif soma_banco =< 5:
+            print("Dá mais uma carta para o Banco")
+            novo_indice = random.randint(0, len(baralho_de_jogo))
+            cartas_banco.append(baralho_de_jogo[novo_indice])
+            print("As cartas do banco são {}".format(cartas_banco))
+            soma_banco += valores_baralho[novo_indice]
+            if soma_banco >= 10:
+                soma_banco -= 10
+            else:
+                pass
+            if soma_banco == 8 or soma_banco == 9:
+                if soma_jogador == soma_banco:
+                    resultado = "Empate"
+                elif soma_jogador > soma_banco:
+                    resultado = "Jogador Venceu"
+                elif soma_jogador < soma_banco:
+                    resultado = "Banco Venceu"
+            else:
+                resultado = "Jogador Venceu"
+    elif soma_banco == 8 or soma_banco == 9:
+        if soma_jogador == 6 or soma_jogador == 7:
+            resultado = "Banco Venceu"
+        elif soma_jogador =< 5:
+            print("Dá mais uma carta para o Jogador")
+            novo_indice = random.randint(0, len(baralho_de_jogo))
+            cartas_jogador.append(baralho_de_jogo[novo_indice])
+            print("As cartas do jogador são {}".format(cartas_jogador))
+            soma_jogador += valores_baralho[novo_indice]
+            if soma_jogador >= 10:
+                soma_jogador -= 10
+            else:
+                pass
+            if soma_jogador == 8 or soma_jogador == 9:
+                if soma_jogador == soma_banco:
+                    resultado = "Empate"
+                elif soma_jogador > soma_banco:
+                    resultado = "Jogador Venceu"
+                elif soma_jogador < soma_banco:
+                    resultado = "Banco Venceu"
+            else:
+                resultado = "Banco Venceu"
+    else:
+        if soma_jogador =< 5:
+            print("Dá mais uma carta para o Jogador")
+            novo_indice = random.randint(0, len(baralho_de_jogo))
+            cartas_jogador.append(baralho_de_jogo[novo_indice])
+            print("As cartas do jogador são {}".format(cartas_jogador))
+            soma_jogador += valores_baralho[novo_indice]
+            if soma_jogador >= 10:
+                soma_jogador -= 10
+            else:
+                pass
+        else:
+            pass
 
+        if soma_banco =< 5:
+            print("Dá mais uma carta para o Banco")
+            novo_indice = random.randint(0, len(baralho_de_jogo))
+            cartas_banco.append(baralho_de_jogo[novo_indice])
+            print("As cartas do banco são {}".format(cartas_banco))
+            soma_banco += valores_baralho[novo_indice]
+            if soma_banco >= 10:
+                soma_banco -= 10
+            else:
+                pass
+        else:
+            pass
 
-# Função principal
-# def jogar():
-
-
-
+        if soma_jogador == soma_banco:
+            resultado = "Empate"
+        elif soma_jogador > soma_banco:
+            resultado = "Jogador Venceu"
+        elif soma_jogador < soma_banco:
+            resultado = "Banco Venceu"
+    return resultado
 
 # Variáveis globais fora de qualquer função
 
