@@ -1,3 +1,4 @@
+# Arquivo contendo as listas de cartas e seus respectivos valores
 # Baralhos usados no Bacará
 
 um_baralho = ["A-Paus", "2-Paus", "3-Paus", "4-Paus", "5-Paus", "6-Paus", "7-Paus", "8-Paus", "9-Paus", "10-Paus", "J-Paus", "Q-Paus", "K-Paus",
@@ -34,4 +35,4 @@ comissao_oito_baralhos = [1.24/100 , 1.06/100 , 14.36/100]
 
 # comissao_oito_baralhos[0] para quando o jogador vence
 # comissao_oito_baralhos[1] para quando o banco vence
-# comissao_oito_baralhos[2] para quando dá empate 
+# comissao_oito_baralhos[2] para quando dá empate
