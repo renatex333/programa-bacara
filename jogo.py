@@ -1,11 +1,11 @@
 # EP - Design de Software
-# Renato Laffranchi Falcão
-# Data: DD/MM/2020
+# Feito por: Renato Laffranchi Falcão
+# Data: 16/10/2020
 
 import random
 from baralhos import *
 import math
-
+import time
 
 # Função para definir a quantidade de apostadores que vão entrar no jogo
 def entrada_de_apostadores():
@@ -90,8 +90,12 @@ def jogar():
     cartas_banco.append(baralho_de_jogo[indice_1_banco])
     cartas_banco.append(baralho_de_jogo[indice_2_banco])
 
+    # usei a função time.sleep() para deixar o jogo mais apresentável
+    # e mais fácil para que o usuário entenda o que está acontecendo
     print("As cartas do jogador são {}".format(cartas_jogador))
+    time.sleep(2)
     print("As cartas do banco são {}".format(cartas_banco))
+    time.sleep(2)
 
     soma_jogador = valores_baralho[indice_1_jogador] + valores_baralho[indice_2_jogador]
     soma_banco = valores_baralho[indice_1_banco] + valores_baralho[indice_2_banco]
@@ -184,6 +188,7 @@ def jogar():
         else:
             pass
 
+    time.sleep(2)
     print("O Jogador teve uma soma de {} pontos e o Banco teve uma soma de {} pontos.".format(soma_jogador, soma_banco))
 
     if soma_jogador == soma_banco:
@@ -217,15 +222,17 @@ else:
     valores_baralho = valores_oito_baralhos
     valor_comissao = comissao_oito_baralhos
 
-
-apostas_jogadores = apostas(jogadores, fichas_jogadores)
-fichas_apostadas = apostas_jogadores[0]
-aposta_vencedor = apostas_jogadores[1]
-
 jogando = True
 
 while jogando:
+    apostas_jogadores = apostas(jogadores, fichas_jogadores)
+    fichas_apostadas = apostas_jogadores[0]
+    aposta_vencedor = apostas_jogadores[1]
+
+
     resultado = jogar()
+
+    time.sleep(2)
 
     if resultado == "Jogador Venceu":
         print("O Jogador venceu!")
