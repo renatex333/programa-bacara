@@ -93,9 +93,9 @@ def jogar():
     # usei a função time.sleep() para deixar o jogo mais apresentável
     # e mais fácil para que o usuário entenda o que está acontecendo
     print("As cartas do jogador são {}".format(cartas_jogador))
-    time.sleep(2)
+    time.sleep(1.5)
     print("As cartas do banco são {}".format(cartas_banco))
-    time.sleep(2)
+    time.sleep(1.5)
 
     soma_jogador = valores_baralho[indice_1_jogador] + valores_baralho[indice_2_jogador]
     soma_banco = valores_baralho[indice_1_banco] + valores_baralho[indice_2_banco]
@@ -111,85 +111,70 @@ def jogar():
 
     # checa a soma das cartas e distribui uma terceira nos casos específicos
     if soma_jogador == 8 or soma_jogador == 9:
-        if soma_banco == 8 or soma_banco == 9:
-            if soma_jogador == soma_banco:
-                resultado = "Empate"
-            elif soma_jogador > soma_banco:
-                resultado = "Jogador Venceu"
-            elif soma_jogador < soma_banco:
-                resultado = "Banco Venceu"
-        elif soma_banco == 6 or soma_banco == 7:
-            resultado = "Jogador Venceu"
-        elif soma_banco == 5 or soma_banco < 5:
-            print("Dá mais uma carta para o Banco")
-            novo_indice = random.randint(0, len(baralho_de_jogo))
-            cartas_banco.append(baralho_de_jogo[novo_indice])
-            print("As cartas do banco são {}".format(cartas_banco))
-            soma_banco += valores_baralho[novo_indice]
-            if soma_banco == 10 or soma_banco > 10:
-                soma_banco -= 10
-            else:
-                pass
-            if soma_banco == 8 or soma_banco == 9:
-                if soma_jogador == soma_banco:
-                    resultado = "Empate"
-                elif soma_jogador > soma_banco:
-                    resultado = "Jogador Venceu"
-                elif soma_jogador < soma_banco:
-                    resultado = "Banco Venceu"
-            else:
-                resultado = "Jogador Venceu"
+        pass
+
     elif soma_banco == 8 or soma_banco == 9:
-        if soma_jogador == 6 or soma_jogador == 7:
-            resultado = "Banco Venceu"
-        elif soma_jogador == 5 or soma_jogador < 5:
-            print("Dá mais uma carta para o Jogador")
-            novo_indice = random.randint(0, len(baralho_de_jogo))
-            cartas_jogador.append(baralho_de_jogo[novo_indice])
-            print("As cartas do jogador são {}".format(cartas_jogador))
-            soma_jogador += valores_baralho[novo_indice]
-            if soma_jogador == 10 or soma_jogador > 10:
-                soma_jogador -= 10
-            else:
-                pass
-            if soma_jogador == 8 or soma_jogador == 9:
-                if soma_jogador == soma_banco:
-                    resultado = "Empate"
-                elif soma_jogador > soma_banco:
-                    resultado = "Jogador Venceu"
-                elif soma_jogador < soma_banco:
-                    resultado = "Banco Venceu"
-            else:
-                resultado = "Banco Venceu"
-    else:
-        if soma_jogador == 5 or soma_jogador < 5:
-            print("Dá mais uma carta para o Jogador")
-            novo_indice = random.randint(0, len(baralho_de_jogo))
-            cartas_jogador.append(baralho_de_jogo[novo_indice])
-            print("As cartas do jogador são {}".format(cartas_jogador))
-            soma_jogador += valores_baralho[novo_indice]
-            if soma_jogador == 10 or soma_jogador > 10:
-                soma_jogador -= 10
-            else:
-                pass
-        else:
+        pass
+
+    elif soma_jogador == 6 or soma_jogador == 7:
+        if soma_banco == 6 or soma_banco == 7:
             pass
 
-        if soma_banco == 5 or soma_banco < 5:
+        elif soma_banco == 5 or soma_banco < 5:
+            time.sleep(1.5)
             print("Dá mais uma carta para o Banco")
             novo_indice = random.randint(0, len(baralho_de_jogo))
             cartas_banco.append(baralho_de_jogo[novo_indice])
+            time.sleep(1.5)
             print("As cartas do banco são {}".format(cartas_banco))
             soma_banco += valores_baralho[novo_indice]
             if soma_banco == 10 or soma_banco > 10:
                 soma_banco -= 10
             else:
                 pass
+
+    elif soma_banco == 6 or soma_banco == 7:
+        time.sleep(1.5)
+        print("Dá mais uma carta para o Jogador")
+        novo_indice = random.randint(0, len(baralho_de_jogo))
+        cartas_jogador.append(baralho_de_jogo[novo_indice])
+        time.sleep(1.5)
+        print("As cartas do jogador são {}".format(cartas_jogador))
+        soma_jogador += valores_baralho[novo_indice]
+        if soma_jogador == 10 or soma_jogador > 10:
+            soma_jogador -= 10
         else:
             pass
 
-    time.sleep(2)
+    else:
+        time.sleep(1.5)
+        print("Dá mais uma carta para o Jogador")
+        novo_indice = random.randint(0, len(baralho_de_jogo))
+        cartas_jogador.append(baralho_de_jogo[novo_indice])
+        time.sleep(1.5)
+        print("As cartas do jogador são {}".format(cartas_jogador))
+        soma_jogador += valores_baralho[novo_indice]
+        if soma_jogador == 10 or soma_jogador > 10:
+            soma_jogador -= 10
+        else:
+            pass
+
+        time.sleep(1.5)
+        print("Dá mais uma carta para o Banco")
+        novo_indice = random.randint(0, len(baralho_de_jogo))
+        cartas_banco.append(baralho_de_jogo[novo_indice])
+        time.sleep(1.5)
+        print("As cartas do banco são {}".format(cartas_banco))
+        soma_banco += valores_baralho[novo_indice]
+        if soma_banco == 10 or soma_banco > 10:
+            soma_banco -= 10
+        else:
+            pass
+
+    time.sleep(1.5)
     print("O Jogador teve uma soma de {} pontos e o Banco teve uma soma de {} pontos.".format(soma_jogador, soma_banco))
+
+    # checa quem teve a maior soma depois da distribuição correta das cartas
 
     if soma_jogador == soma_banco:
         resultado = "Empate"
@@ -232,7 +217,7 @@ while jogando:
 
     resultado = jogar()
 
-    time.sleep(2)
+    time.sleep(1.5)
 
     if resultado == "Jogador Venceu":
         print("O Jogador venceu!")
