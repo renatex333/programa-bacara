@@ -34,4 +34,4 @@ comissao_oito_baralhos = [1.24/100 , 1.06/100 , 14.36/100]
 
 # comissao_oito_baralhos[0] para quando o jogador vence
 # comissao_oito_baralhos[1] para quando o banco vence
-# comissao_oito_baralhos[2] para quando dá empate
+# comissao_oito_baralhos[2] para quando dá empate 
