@@ -36,6 +36,7 @@ Para começar o jogo, inicialize o arquivo **jogo.py**.
 - O valor das cartas segua a seguinte tabela:
 
 |  A | 1 |
+|:--:|:-:|
 |  2 | 2 |
 |  3 | 3 |
 |  4 | 4 |
