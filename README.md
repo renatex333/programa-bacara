@@ -33,6 +33,23 @@ Para começar o jogo, inicialize o arquivo **jogo.py**.
 - Se a soma das cartas for 6 ou 7, não distribui mais uma carta.
 - Se a soma das cartas for 5 ou menos, distribui mais uma carta e a soma é recalculada.
 
+- O valor das cartas segua a seguinte tabela:
+
+|  A | 1 |
+|:--:|:-:|
+|  2 | 2 |
+|  3 | 3 |
+|  4 | 4 |
+|  5 | 5 |
+|  6 | 6 |
+|  7 | 7 |
+|  8 | 8 |
+|  9 | 9 |
+| 10 | 0 |
+|  J | 0 |
+|  Q | 0 |
+|  K | 0 |
+
 ### 5) Pagamento das apostas
 
 - O jogo é simulado e as apostas são pagas da forma devida a cada apostador, com os descontos de comissão já aplicados.
