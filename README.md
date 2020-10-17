@@ -35,8 +35,8 @@ Para começar o jogo, inicialize o arquivo **jogo.py**.
 
 - O valor das cartas segua a seguinte tabela:
 
-|  A | 1 |
 |:--:|:-:|
+|  A | 1 |
 |  2 | 2 |
 |  3 | 3 |
 |  4 | 4 |
@@ -53,6 +53,13 @@ Para começar o jogo, inicialize o arquivo **jogo.py**.
 ### 5) Pagamento das apostas
 
 - O jogo é simulado e as apostas são pagas da forma devida a cada apostador, com os descontos de comissão já aplicados.
+- A comissão depende da quantidade de baralhos que estão sendo usados e de qual foi a aposta vencedora:
+
+| Vencedor | 1 Baralho | 6 Baralhos | 8 Baralhos |
+|:--------:|:---------:|:----------:|:----------:|
+|  Jogador |   1.29%   |    1.24%   |    1.24%   |
+|   Banco  |   1.01%   |    1.06%   |    1.06%   |
+|  Empate  |   15.75%  |   14.44%   |   14.36%   |
 
 ### 6) Fim do jogo
 
