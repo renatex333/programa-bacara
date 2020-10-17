@@ -9,8 +9,8 @@ Para começar o jogo, inicialize o arquivo **jogo.py**.
 
 ### 1) Entrada de apostadores
 
-- Ao iniciar o programa, várias pessoas poderão apostar.
-- Para isso, digite **1** caso algum apostador deseje participar e insira o nome do apostador no campo designado ou digite **2** caso **não haja mais apostadores** desejando entrar.
+- Ao iniciar o programa, é possível que mais de um jogador participe das apostas. Cada jogador aposta a quantidade de fichas que quiser em quem acreditar ser o vencedor. As cartas de jogador são as mesmas para todos. Ou seja, é equivalente a ocorrerem diversos jogos ao mesmo tempo, um para cada jogador, mas as cartas sorteadas são as mesmas em todas as mesas. Ao final da partida cada jogador recebe ou paga o resultado das suas apostas.
+- Digite **1**, caso algum apostador deseje participar e insira o nome do apostador no campo designado ou digite **2**, caso **não haja mais apostadores** desejando entrar.
 - Todos os apostadores recebem **10.000 fichas** iniciais.
 
 ### 2) Definindo a quantidade de baralhos
@@ -35,26 +35,31 @@ Para começar o jogo, inicialize o arquivo **jogo.py**.
 
 - O valor das cartas segua a seguinte tabela:
 
-| Carta || Valor |
-|:--:|:-:|
-|  A | 1 |
-|  2 | 2 |
-|  3 | 3 |
-|  4 | 4 |
-|  5 | 5 |
-|  6 | 6 |
-|  7 | 7 |
-|  8 | 8 |
-|  9 | 9 |
-| 10 | 0 |
-|  J | 0 |
-|  Q | 0 |
-|  K | 0 |
+| Cartas | Valor |
+|:------:|:-----:|
+|    A   |   1   |
+|    2   |   2   |
+|    3   |   3   |
+|    4   |   4   |
+|    5   |   5   |
+|    6   |   6   |
+|    7   |   7   |
+|    8   |   8   |
+|    9   |   9   |
+|   10   |   0   |
+|    J   |   0   |
+|    Q   |   0   |
+|    K   |   0   |
 
 ### 5) Pagamento das apostas
 
-- O jogo é simulado e as apostas são pagas da forma devida a cada apostador, com os descontos de comissão já aplicados.
-- A comissão depende da quantidade de baralhos que estão sendo usados e de qual foi a aposta vencedora:
+- O jogador perde as fichas apostadas se não tiver apostado no vencedor. Caso contrário, a quantidade de fichas recebidas depende de quem foi o vencedor da partida:
+
+- **Jogador**: se o jogador venceu a partida (obteve a soma mais próxima de 9), a mesa paga a mesma quantidade de fichas apostadas. Por exemplo, se o jogador apostou 10 fichas, ele receberá outras 10 fichas.
+- **Banco**: se o banco venceu a partida, a mesa paga 95% das fichas apostadas. Por exemplo, se o jogador apostou 20 fichas, ele receberá outras 19. Caso o número não seja inteiro o jogador receberá as fichas sempre arredondando para baixo. Por exemplo, se o jogador apostou 25 fichas, ele vai receber só 23 a mais.
+- **Empate**: se ocorreu um empate, e o jogador apostou no empate, a mesa paga 8 vezes a quantidade de fichas apostadas. Por exemplo, se o jogador apostou 10 fichas, ele receberá outras 80.
+- Se o jogador perde a aposta ele não paga nada de comissão nessa partida. Entretanto, se ele ganha a aposta, é necessário pagar uma porcentagem do que ele for receber para a casa.
+- As taxas de comissão dependem de quem foi o vencedor da partida (jogador, banco ou empate) e da quantidade de baralhos. A tabela a seguir resume as taxas para cada caso:
 
 | Vencedor | 1 Baralho | 6 Baralhos | 8 Baralhos |
 |:--------:|:---------:|:----------:|:----------:|
