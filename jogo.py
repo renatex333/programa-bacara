@@ -86,26 +86,20 @@ def apostas(jogadores, fichas_jogadores):
 
         if checa_numero(numero_fichas):
             numero_fichas = int(numero_fichas)
-        else:
-            pass
 
-        if numero_fichas == int:
-            print("Deu bom, é int")
-        else:
-            print("Deu ruim")
+            if numero_fichas > fichas_jogadores[i]:
+                print("Você não pode apostar mais do que tem. ")
+            elif numero_fichas < 0:
+                print("Você não pode apostar um número negativo de fichas. ")
+            elif numero_fichas == 0:
+                print("Você deve apostar no mínimo uma ficha. ")
+            else:
+                apostas_fichas.append(numero_fichas)
+                fichas_jogadores[i] = fichas_jogadores[i] - numero_fichas
+                i += 1
 
-        if numero_fichas != int:
+        else:
             print("Resposta inválida. ")
-        elif numero_fichas > fichas_jogadores[i]:
-            print("Você não pode apostar mais do que tem. ")
-        elif numero_fichas < 0:
-            print("Você não pode apostar um número negativo de fichas. ")
-        elif numero_fichas == 0:
-            print("Você deve apostar no mínimo uma ficha. ")
-        else:
-            apostas_fichas.append(numero_fichas)
-            fichas_jogadores[i] = fichas_jogadores[i] - numero_fichas
-            i += 1
 
     conjunto_apostas = [apostas_fichas, aposta_vencedor]
 
