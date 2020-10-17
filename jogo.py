@@ -7,6 +7,14 @@ from baralhos import *
 import math
 import time
 
+# Função para checar se a resposta do usuário é um número inteiro
+
+def checa_numero(numero):
+    if numero.isdigit():
+        return True
+    else:
+        return False
+
 # Função para definir a quantidade de apostadores que vão entrar no jogo
 def entrada_de_apostadores():
     lista_apostadores = []
@@ -14,7 +22,12 @@ def entrada_de_apostadores():
 
 # Enquanto houver jogadores desejando entrar, o loop continuará
     while entrando_apostadores:
-        resposta = int(input("Você deseja participar do jogo? (1-Sim e 2-Não) "))
+        resposta = input("Você deseja participar do jogo? (1-Sim e 2-Não) ")
+
+        if checa_numero(resposta):
+            resposta = int(resposta)
+        else:
+            pass
         if resposta == 1:
             nome = input("Qual o seu nome? ")
             lista_apostadores.append(nome)
@@ -29,12 +42,18 @@ def entrada_de_apostadores():
 def define_baralhos():
     definindo_baralhos = True
     while definindo_baralhos == True:
-        numero_de_baralhos = int(input("Com quantos baralhos deseja jogar?(1,6 ou 8) "))
+        numero_de_baralhos = input("Com quantos baralhos deseja jogar?(1,6 ou 8) ")
+
+        if checa_numero(numero_de_baralhos):
+            numero_de_baralhos = int(numero_de_baralhos)
+        else:
+            pass
+
         if numero_de_baralhos == 1 or numero_de_baralhos == 6 or numero_de_baralhos == 8:
             definindo_baralhos = False
             return numero_de_baralhos
         else:
-            print("Esse número de baralhos é inválido")
+            print("Resposta inválida. ")
 
 # Função para inicializar uma aposta
 def apostas(jogadores, fichas_jogadores):
@@ -42,7 +61,12 @@ def apostas(jogadores, fichas_jogadores):
     apostas_fichas = []
     i = 0
     while i < len(jogadores):
-        quem_vence = int(input("{}, quem você acha que vai ganhar? (1 - Jogador, 2 - Banco, 3 - Empate) ".format(jogadores[i])))
+        quem_vence = input("{}, quem você acha que vai ganhar? (1 - Jogador, 2 - Banco, 3 - Empate) ".format(jogadores[i]))
+
+        if checa_numero(quem_vence):
+            quem_vence = int(quem_vence)
+        else:
+            pass
 
         if quem_vence == 1:
             aposta_vencedor.append("Jogador")
@@ -58,9 +82,21 @@ def apostas(jogadores, fichas_jogadores):
 
     i = 0
     while i < len(jogadores):
-        numero_fichas = int(input("{}, quantas fichas você deseja apostar no {}? (Você tem {} fichas) ".format(jogadores[i], aposta_vencedor[i], fichas_jogadores[i])))
+        numero_fichas = input("{}, quantas fichas você deseja apostar no {}? (Você tem {} fichas) ".format(jogadores[i], aposta_vencedor[i], fichas_jogadores[i]))
 
-        if numero_fichas > fichas_jogadores[i]:
+        if checa_numero(numero_fichas):
+            numero_fichas = int(numero_fichas)
+        else:
+            pass
+
+        if numero_fichas == int:
+            print("Deu bom, é int")
+        else:
+            print("Deu ruim")
+
+        if numero_fichas != int:
+            print("Resposta inválida. ")
+        elif numero_fichas > fichas_jogadores[i]:
             print("Você não pode apostar mais do que tem. ")
         elif numero_fichas < 0:
             print("Você não pode apostar um número negativo de fichas. ")
@@ -121,7 +157,6 @@ def jogar():
             pass
 
         elif soma_banco == 5 or soma_banco < 5:
-            time.sleep(1.5)
             print("Dá mais uma carta para o Banco")
             novo_indice = random.randint(0, len(baralho_de_jogo))
             cartas_banco.append(baralho_de_jogo[novo_indice])
@@ -134,7 +169,6 @@ def jogar():
                 pass
 
     elif soma_banco == 6 or soma_banco == 7:
-        time.sleep(1.5)
         print("Dá mais uma carta para o Jogador")
         novo_indice = random.randint(0, len(baralho_de_jogo))
         cartas_jogador.append(baralho_de_jogo[novo_indice])
@@ -147,7 +181,6 @@ def jogar():
             pass
 
     else:
-        time.sleep(1.5)
         print("Dá mais uma carta para o Jogador")
         novo_indice = random.randint(0, len(baralho_de_jogo))
         cartas_jogador.append(baralho_de_jogo[novo_indice])
@@ -159,7 +192,6 @@ def jogar():
         else:
             pass
 
-        time.sleep(1.5)
         print("Dá mais uma carta para o Banco")
         novo_indice = random.randint(0, len(baralho_de_jogo))
         cartas_banco.append(baralho_de_jogo[novo_indice])
@@ -171,7 +203,6 @@ def jogar():
         else:
             pass
 
-    time.sleep(1.5)
     print("O Jogador teve uma soma de {} pontos e o Banco teve uma soma de {} pontos.".format(soma_jogador, soma_banco))
 
     # checa quem teve a maior soma depois da distribuição correta das cartas
@@ -269,7 +300,10 @@ while jogando:
             del fichas_jogadores[i]
         else:
             print("{}, você está agora com {} fichas.".format(jogadores[i], fichas_jogadores[i]))
-            parou = int(input("Deseja parar agora? (1 - Sim e 2 - Não)"))
+            parou = input("Deseja parar agora? (1 - Sim e 2 - Não)")
+
+            parou = checa_numero(parou)
+
             if parou == 1:
                 print("Obrigado por jogar!")
                 del jogadores[i]
@@ -277,6 +311,9 @@ while jogando:
             elif parou == 2:
                 print("Então vamos para mais uma rodada!")
                 i += 1
+
+            else:
+                print("Resposta inválida. ")
 
 
     if not jogadores:
